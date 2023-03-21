@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <meta content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'" />
+    <link rel="stylesheet" href="./css/font-awesome.min.css" />
+    <script src="./js/iziToast.min.js" type="text/javascript"></script>
+    <script src="./js/jquery.min.js" type="text/javascript"></script>
+    <script src="./js/md5.min.js" type="text/javascript"></script>
+
+    <title>ACMTeam_BBS</title>
+  </head>
+
+  <script>
+    passwordc = false;
+    function signup() {
+      let phone = document.getElementById("phone").value;
+      let email = document.getElementById("email").value;
+      let username = document.getElementById("username").value;
+      let idnum = document.getElementById("idnum").value;
+      let realname = document.getElementById("realname").value;
+
+      let password = document.getElementById("password").value;
+      let p_reminder = document.getElementById("pass_reminder");
+
+      let p_test = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/;
+      let em_test = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+
+      let sex = "3";
+      var radio = document.getElementsByName("sex");
+      for (i = 0; i < radio.length; i++) {
+        if (radio[i].checked) {
+          sex = radio[i].value;
+        }
+      }
+
+      if (phone == "" || email == "" || password == "") {
+        alert("手机号，邮箱或密码不能为空");
+        return false;
+      }
+      if (!p_test.test(phone)) {
+        document.getElementById("phone").value = "";
+        document.getElementById("phone").placeholder = "手机号格式不正确";
+        return false;
+      }
+      if (!em_test.test(email)) {
+        document.getElementById("email").value = "";
+        document.getElementById("email").placeholder = "邮箱格式不正确";
+        return false;
+      }
+      if (em_test.test(username) || p_test.test(username)) {
+        document.getElementById("username").value = "";
+        document.getElementById("username").placeholder = "用户名不得包含特殊字符，手机号格式等";
+        return false;
+      }
+      if (p_test.test(phone) && em_test.test(email) && username != "" && passwordc) {
+        var regform = {
+          phone: phone,
+          email: email,
+          username: username,
+          studentid: idnum,
+          realname: realname,
+          sex: sex,
+          password: md5(password),
+        };
+        console.log(JSON.stringify(regform));
+        $.ajax({
+          type: "POST",
+          url: "https://bbsdev.liruinian.top/api/user/register",
+          data: JSON.stringify(regform),
+          dataType: "json",
+          success: function (result) {
+            if (result != "success") {
+              console.log(result);
+              alert(result.msg);
+            } else {
+              window.location.href = "index.html";
+            }
+          },
+        });
+      }
+    }
+  </script>
+
+  <body>
+    <div class="header">
+      <a class="title" href="index.html">ACMTeam_BBS</a>
+      <div class="menu">
+        <div class="index menu_item"><a href="index.html">主页</a></div>
+        &nbsp
+        <div class="personal menu_item">个人空间</div>
+      </div>
+    </div>
+    <div class="backgrounddiv">
+      <div class="bgtextdiv">
+        <p class="bgtext">NEAU<br />ACM</p>
+      </div>
+      <div class="form">
+        手机：<input type="text" id="phone" class="input" /> *<br />
+        邮箱：<input type="text" id="email" class="input" /> *<br />
+        昵称：<input type="text" id="username" class="input" /> *<br />
+
+        学号：<input type="text" name="idnum" id="idnum" /> <br />
+        姓名：<input type="text" name="realname" id="realname" /> <br />
+        性别：<input type="radio" id="sex" name="sex" value="1" />男&nbsp; <input type="radio" id="sex" name="sex" value="2" />女&nbsp;
+        <input type="radio" id="sex" name="sex" value="3" checked />保密 *<br />
+        密码：<input class="pass" type="password" name="password" id="password" oninput="_passconfirm()" /> *<br />
+        确认密码：<input class="passc" type="password" id="passconfirm" oninput="_passconfirm()" /> *
+        <span class="passwro" style="display: block"><i class="fa fa-ban" style="color: rgb(255, 137, 137)">&nbsp;请重新输入一次密码</i></span>
+        <span class="passcor" style="display: none"><i class="fa fa-check-square-o" style="color: rgb(137, 255, 190)">&nbsp;两次密码输入一致</i></span
+        ><br />
+        <div id="pass_reminder" class="notetext">推荐密码为八位及以上，并且包括字母数字特殊字符三项</div>
+        <div class="signup_btn" id="signup" onclick="signup()">注册</div>
+      </div>
+      <script type="text/javascript">
+        function _passconfirm() {
+          pass = document.getElementsByClassName("pass")[0];
+          passc = document.getElementsByClassName("passc")[0];
+          passcorrect = document.getElementsByClassName("passcor")[0];
+          passwrong = document.getElementsByClassName("passwro")[0];
+
+          if (pass.value == passc.value) {
+            passcorrect.style.display = "block";
+            passwrong.style.display = "none";
+            passwordc = true;
+          } else {
+            passwrong.style.display = "block";
+            passcorrect.style.display = "none";
+            passwordc = false;
+          }
+
+          if (pass.value == "") {
+            passcorrect.style.display = "none";
+            passwrong.style.display = "block";
+            passwordc = false;
+          }
+        }
+      </script>
+    </div>
+    <div class="footer">
+      东北农业大学 ACM集训队项目部 李睿年 韩玉坤<br />
+      2023.3.15
+    </div>
+  </body>
+</html>
+
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  input {
+    color: white;
+    border: none;
+    background: none;
+    border-radius: 0;
+    border-bottom: 2px solid white;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-family: "BenderLight";
+  }
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  div {
+    margin: 5px;
+  }
+  .header {
+    display: flex;
+    height: 25px;
+    margin: 0;
+    padding: 5px;
+    background-color: rgb(66, 77, 180);
+    color: white;
+  }
+  .menu {
+    display: flex;
+    margin: 0 5px;
+    padding: 0 5px;
+  }
+  .menu_item {
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0 5px;
+    transition: 0.5s;
+  }
+  .menu_item:hover {
+    background-color: rgb(39, 46, 110);
+  }
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .signup_btn {
+    padding-left: 10px;
+    width: 320px;
+    height: 30px;
+    margin: 20px 0;
+    background-color: rgb(12, 26, 145);
+    color: white;
+    padding-top: 6px;
+  }
+  .signup_btn:hover {
+    background-color: rgb(6, 14, 78);
+    cursor: pointer;
+  }
+  .form {
+    position: absolute;
+    left: 0;
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    margin-top: 45px;
+    background-color: rgb(54, 120, 203);
+    color: white;
+    box-shadow: 10px 10px 5px rgb(34, 74, 122, 0.5);
+    overflow: hidden;
+  }
+  .backgrounddiv {
+    width: 100%;
+    height: 500px;
+    background-color: rgb(34, 74, 122);
+    margin-bottom: 32px;
+  }
+  .bgtextdiv {
+    position: absolute;
+    right: 0;
+    text-align: right;
+    margin-top: 0;
+  }
+  .bgtext {
+    color: white;
+    font-size: 150px;
+    font-weight: bolder;
+    margin-top: 0;
+  }
+  .notetext {
+    font-size: 14px;
+  }
+
+  .footer {
+    margin: 0;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    color: rgb(122, 122, 122);
+  }
+</style>

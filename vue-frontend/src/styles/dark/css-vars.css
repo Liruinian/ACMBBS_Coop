@@ -1,0 +1,6 @@
+html.dark {
+  --el-menu-bg-color: rgb(25, 30, 80);
+  --el-menu-text-color: white;
+  --el-menu-hover-text-color: white;
+  --form-bg-color: #000;
+}
