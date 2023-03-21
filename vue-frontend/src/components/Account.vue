@@ -26,17 +26,17 @@ export default defineComponent({
       <p class="bgtext">NEAU<br />ACM</p>
     </div>
     <div class="form">
-      手机：{{ phone }}<br />
-      邮箱：{{ email }}<br />
-      昵称：{{ username }}<br />
-      学号：{{ studentid }}<br />
-      姓名：{{ realname }}<br />
+      <p>手机：{{ phone }}</p>
+      <p>邮箱：{{ email }}</p>
+      <p>昵称：{{ username }}</p>
+      <p>学号：{{ studentid }}</p>
+      <p>姓名：{{ realname }}</p>
       性别：
       <div>
         <el-radio-group v-model="sex">
-          <el-radio-button value="male">男</el-radio-button>
-          <el-radio-button value="female">女</el-radio-button>
-          <el-radio-button value="unknown">保密</el-radio-button>
+          <el-radio-button label="male">男</el-radio-button>
+          <el-radio-button label="female">女</el-radio-button>
+          <el-radio-button label="unknown">保密</el-radio-button>
         </el-radio-group>
       </div>
       <br />
@@ -76,7 +76,7 @@ export default defineComponent({
 }
 .backgrounddiv {
   width: 100%;
-  height: 500px;
+  height: 600px;
   background-color: rgb(34, 74, 122);
 }
 .bgtextdiv {

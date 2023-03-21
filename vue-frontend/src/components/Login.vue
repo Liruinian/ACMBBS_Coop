@@ -1,12 +1,16 @@
 <script setup>
-import { login } from '../assets/js/login'
+import { login } from '@/assets/js/login'
+import { ref } from 'vue'
+const account = ref('')
+const password = ref('')
+
 </script>
 <template>
   <div class="login_form container">
     <div class="login_text">欢迎登录ACMTeam_BBS!</div>
-    <el-input type="text" name="user" id="user" placeholder="账号" /><br />
-    <el-input type="password" name="password" id="password" placeholder="密码" /><br />
-    <el-button type="primary" class="login_btn" @click="login">登录</el-button>
+    <el-input type="text" name="user" v-model="account" placeholder="账号" /><br />
+    <el-input type="password" name="password" v-model="password" placeholder="密码" /><br />
+    <el-button type="primary" class="login_btn" @click.native="login(account,password)">登录</el-button>
     <router-link to="/signup"><el-button type="primary" class="login_btn">注册</el-button></router-link>
   </div>
 </template>

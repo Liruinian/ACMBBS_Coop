@@ -9,9 +9,8 @@ $.ajax({
     console.log(result)
   }
 })
-export function login() {
-  let account = document.getElementById('user').value
-  let password = document.getElementById('password').value
+
+export function login(account, password) {
   let p_test = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
   let em_test = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
 
@@ -47,4 +46,4 @@ export function login() {
   }
 }
 
-export function signupjump() {}
+function signupjump() {}

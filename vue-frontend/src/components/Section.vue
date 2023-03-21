@@ -9,7 +9,7 @@ export default {
   props: {
     section_title: String,
     section_logo: String,
-    post: Array
+    post: Object
   }
 }
 </script>
