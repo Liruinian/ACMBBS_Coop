@@ -8,12 +8,15 @@ export default {
   },
   props: {
     section_title: String,
+    section_id: Number,
+    section_href:String,
     section_logo: String,
     post: Object
   }
 }
 </script>
 <template>
+  <router-link :to=section_href>
   <div class="section_cont container" id="section_cont">
     <div class="section_title"><i v-bind:class="section_logo"></i><br />{{ section_title }}</div>
     <div class="section_container">
@@ -26,6 +29,7 @@ export default {
       />
     </div>
   </div>
+  </router-link>
 </template>
 
 <style scoped>
@@ -35,7 +39,7 @@ export default {
 }
 .section_cont {
   display: flex;
-  width: 45%;
+  width:300px;
   overflow:hidden;
 }
 .section_title {

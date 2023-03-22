@@ -12,29 +12,13 @@ export default {
   <div class="all_section container">
     <div class="boldtext"><i class="fa fa-book"></i> 所有板块</div>
     <div class="sections">
-      <Section
-        :section_title="postarr[0].section"
-        section_logo="fa fa-3x fa-area-chart"
-        section_id="0"
-        :post="postarr[0]"
-      />
-      <Section
-        :section_title="postarr[1].section"
-        section_logo="fa fa-3x fa-child"
-        section_id="1"
-        :post="postarr[1]"
-      />
-      <Section
-        :section_title="postarr[2].section"
-        section_logo="fa fa-3x fa-file-text"
-        section_id="2"
-        :post="postarr[2]"
-      />
-      <Section
-        :section_title="postarr[3].section"
-        section_logo="fa fa-3x fa-cutlery"
-        section_id="3"
-        :post="postarr[3]"
+      
+      <Section v-for="post in postarr"
+        :section_title=post.section
+        :section_logo=post.icon
+        :section_id=post.id
+        :section_href="'/section/' + post.id"
+        :post=post
       />
     </div>
   </div>
