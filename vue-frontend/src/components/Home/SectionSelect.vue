@@ -1,5 +1,5 @@
 <script setup>
-import Post from './Post.vue'
+import Post from '../Post.vue'
 </script>
 <script>
 export default {
@@ -19,10 +19,10 @@ export default {
     <div class="section_container">
       最新帖子：
       <Post
-        :post_title=post.title
-        :post_author=post.author
-        :post_tag=post.tag
-        :post_time=post.time
+        :post_title="post.title"
+        :post_author="post.author"
+        :post_tag="post.tag"
+        :post_time="post.time"
       />
     </div>
   </div>
@@ -30,13 +30,16 @@ export default {
 
 <style scoped>
 .section_container {
+  width:80%;
   font-size: 10px;
 }
 .section_cont {
   display: flex;
-  width: 300px;
+  width: 45%;
+  overflow:hidden;
 }
 .section_title {
+  width:20%;
   margin-top: 25px;
   text-align: center;
   font-size: 14px;

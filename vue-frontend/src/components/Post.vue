@@ -35,7 +35,7 @@ export default {
 .post_author,
 .post_title,
 .post_tag {
-  width: 200px;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

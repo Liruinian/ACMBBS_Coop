@@ -1,5 +1,15 @@
 import $ from 'jquery'
 import md5 from 'blueimp-md5'
+import { ElNotification } from 'element-plus'
+
+function toast(title, message, type) {
+  ElNotification({
+    title: title,
+    message: message,
+    type: type,
+    position: 'bottom-right'
+  })
+}
 
 $.ajax({
   type: 'GET',
@@ -15,7 +25,8 @@ export function login(account, password) {
   let em_test = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
 
   if (account == '' || password == '') {
-    alert('手机号，邮箱或密码不能为空')
+    toast('登录失败', '手机号，邮箱或密码不能为空', 'error')
+    // alert('手机号，邮箱或密码不能为空')
     return false
   }
 
@@ -29,18 +40,23 @@ export function login(account, password) {
       login_type = 3
     }
 
+    let jsondata = JSON.stringify({
+      user: account,
+      password: md5(password),
+      logintype: login_type
+    })
     $.ajax({
       type: 'POST',
       // url: "http://43.143.195.225:8080/web/login",
       url: 'https://bbsdev.liruinian.top/api/user/login',
-      data: JSON.stringify({
-        user: $('#user').val(),
-        password: md5($('#password').val()),
-        logintype: login_type
-      }),
+      data: jsondata,
       dataType: 'json',
       success: function (result) {
-        console.log(result)
+        if (result.code !== 2000) {
+          toast('登录失败', result.msg, 'error')
+        } else {
+          toast('权限已核实', '正在为您登录...', 'success')
+        }
       }
     })
   }

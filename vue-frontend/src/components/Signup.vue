@@ -1,5 +1,4 @@
 <script setup>
-//TODO: 找其他的密码校验来修改
 const phone = ref('')
 const username = ref('')
 const email = ref('')
@@ -10,24 +9,29 @@ const passc = ref('')
 const sex = ref('unknown')
 const description = ref('这个人很神秘，没有留下个人简介...')
 
+var valid = false
 var passwordc = false
-function passconfirm() {
+
+function check() {
   let passcorrect = document.getElementsByClassName('passcor')[0]
   let passwrong = document.getElementsByClassName('passwro')[0]
-
   let strongRegex = new RegExp('^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$', 'g')
   let mediumRegex = new RegExp(
     '^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$',
     'g'
   )
   let enoughRegex = new RegExp('(?=.{6,}).*', 'g')
+  let reminder = document.getElementById('reminder')
+
+  let p_test = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
+  let em_test = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
+  let studentid_test = /^A[0-9]{8}$/
 
   if (pass.value == passc.value) {
     if (pass.value.match(strongRegex)) {
       passcorrect.style.display = 'block'
       passwrong.style.display = 'none'
       passwordc = true
-
       passcorrect.innerHTML =
         '<i class="fa fa-check-square-o" style="color: rgb(75, 191, 94)">&nbsp;密码强度：强</i>'
     } else if (pass.value.match(mediumRegex)) {
@@ -66,32 +70,26 @@ function passconfirm() {
     passwrong.style.display = 'block'
     passwordc = false
   }
-}
 
-function check() {
-  let reminder = document.getElementById("reminder")
-
-  let p_test = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/;
-  let em_test = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-  let studentid_test = /^A[0-9]{8}$/;
-
-
-  if(!p_test.test(phone.value) && phone.value != ""){
-    reminder.innerHTML = "手机号码格式不正确"
-  }else{
-    reminder.innerHTML = ""
-    if(!em_test.test(email.value) && email.value != ""){
-      reminder.innerHTML = "邮箱格式不正确"
-    }else{
-      reminder.innerHTML = ""
-      if(p_test.test(username.value) || em_test.test(username.value)){
-        reminder.innerHTML = "用户名不能使用手机或邮箱"
-      }else{
-        reminder.innerHTML = ""
-        if(!studentid_test.test(studentid.value)){
-          reminder.innerHTML = "学号格式不正确"
-        }else{
-          reminder.innerHTML = ""
+  if (!p_test.test(phone.value) && phone.value != '') {
+    reminder.innerHTML = '手机号码格式不正确'
+  } else {
+    reminder.innerHTML = ''
+    if (!em_test.test(email.value) && email.value != '') {
+      reminder.innerHTML = '邮箱格式不正确'
+    } else {
+      reminder.innerHTML = ''
+      if (p_test.test(username.value) || em_test.test(username.value)) {
+        reminder.innerHTML = '用户名不能使用手机或邮箱'
+      } else {
+        reminder.innerHTML = ''
+        if (!studentid_test.test(studentid.value) && studentid.value != '') {
+          reminder.innerHTML = '学号格式不正确'
+        } else {
+          reminder.innerHTML = ''
+          if (phone.value != '' && email.value != '' && username.value != '' && passwordc) {
+            valid = true
+          }
         }
       }
     }
@@ -100,17 +98,15 @@ function check() {
 </script>
 <script>
 import { defineComponent, ref } from 'vue'
+import { signup } from '../assets/js/Signup'
 export default defineComponent({
   setup() {
-
     return {
       sex,
       description
     }
   }
 })
-
-
 </script>
 
 <template>
@@ -124,27 +120,17 @@ export default defineComponent({
       <el-input type="text" v-model="username" @change="check" placeholder="昵称（必填，3-20字）" />
       <el-input type="text" v-model="studentid" @change="check" placeholder="学号" />
       <el-input type="text" v-model="realname" @change="check" placeholder="真实姓名" />
-      <div style="display:flex">
+      <div style="display: flex">
         <p>性别：</p>
-      <el-radio-group v-model="sex">
+        <el-radio-group v-model="sex">
           <el-radio-button label="male">男</el-radio-button>
           <el-radio-button label="female">女</el-radio-button>
           <el-radio-button label="unknown">保密</el-radio-button>
         </el-radio-group>
       </div>
       <br />
-      <el-input
-        type="password"
-        v-model="pass"
-        placeholder="密码"
-        @change="passconfirm"
-      />
-      <el-input
-        type="password"
-        v-model="passc"
-        placeholder="确认密码"
-        @change="passconfirm"
-      />
+      <el-input type="password" v-model="pass" placeholder="密码" @change="check" />
+      <el-input type="password" v-model="passc" placeholder="确认密码" @change="check" />
       <span class="passwro" style="display: block"
         ><i class="fa fa-ban" style="color: rgb(255, 137, 137)">&nbsp;密码不能为空</i></span
       >
@@ -156,7 +142,13 @@ export default defineComponent({
       <div id="reminder" class="notetext" style="color: rgb(255, 137, 137)">
         推荐密码为八位及以上，并且包括字母数字特殊字符三项
       </div>
-      <div class="signup_btn" id="signup" onclick="signup()">注册</div>
+      <div
+        class="signup_btn"
+        id="signup"
+        @click="signup(phone, email, username, studentid, realname, pass, sex, description, valid)"
+      >
+        注册
+      </div>
     </div>
   </div>
 </template>

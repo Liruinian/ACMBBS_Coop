@@ -36,5 +36,7 @@ export const useACMBBSStore = defineStore('ACMBBSStore', () => {
     }
   ]
   `
-  return { posts }
+  const logged = false
+  const username = '未登录用户'
+  return { posts, logged, username }
 })

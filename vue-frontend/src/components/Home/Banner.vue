@@ -1,6 +1,15 @@
-<script setup lang="ts">
+<script setup>
 import Login from './Login.vue'
 import Carousel from './Carousel.vue'
+import Logged from './Logged.vue'
+</script>
+<script>
+export default {
+  props: {
+    logged: Boolean,
+    username: String
+  }
+}
 </script>
 <template>
   <div class="rec_container">
@@ -8,7 +17,8 @@ import Carousel from './Carousel.vue'
       <div class="boldtext"><i class="fa fa-thumbs-o-up"></i> 推荐内容</div>
       <Carousel />
     </div>
-    <Login />
+    <Login v-if="!logged" />
+    <Logged v-if="logged" :username="username" />
   </div>
 </template>
 

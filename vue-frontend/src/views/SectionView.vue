@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import MainPage from '../components/Home/Page.vue'
+import Section from '../components/Section/Page.vue'
 </script>
 
 <template>
@@ -10,7 +10,7 @@ import MainPage from '../components/Home/Page.vue'
       <Header />
     </header>
     <main>
-      <MainPage />
+      <Section />
     </main>
     <footer>
       <Footer />

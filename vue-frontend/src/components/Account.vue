@@ -7,15 +7,8 @@ export default defineComponent({
     username: String,
     studentid: String,
     realname: String,
-    sex: String
-  },
-  setup() {
-    let sex = ref<string>('unknown')
-    let description = ref<string>('这个人很神秘，没有留下个人简介...')
-    return {
-      sex,
-      description
-    }
+    sex: String,
+    description: String
   }
 })
 </script>
@@ -26,14 +19,14 @@ export default defineComponent({
       <p class="bgtext">NEAU<br />ACM</p>
     </div>
     <div class="form">
-      <p>手机：{{ phone }}</p>
-      <p>邮箱：{{ email }}</p>
-      <p>昵称：{{ username }}</p>
-      <p>学号：{{ studentid }}</p>
-      <p>姓名：{{ realname }}</p>
+      <div>手机：{{ phone }}</div>
+      <div>邮箱：{{ email }}</div>
+      <div>昵称：{{ username }}</div>
+      <div>学号：{{ studentid }}</div>
+      <div>姓名：{{ realname }}</div>
       性别：
       <div>
-        <el-radio-group v-model="sex">
+        <el-radio-group v-model="sex" disabled>
           <el-radio-button label="male">男</el-radio-button>
           <el-radio-button label="female">女</el-radio-button>
           <el-radio-button label="unknown">保密</el-radio-button>
@@ -41,12 +34,22 @@ export default defineComponent({
       </div>
       <br />
       简介:
-      <el-input type="textarea" maxlength="100" show-word-limit class="description" v-model="description" />
+      <el-input
+        type="textarea"
+        maxlength="100"
+        show-word-limit
+        class="description"
+        v-model="description"
+        disabled
+      />
     </div>
   </div>
 </template>
 
 <style scoped>
+p{
+  color: var(--el-text-color-regular);
+}
 .description {
   height: 150px;
 }
