@@ -47,13 +47,14 @@ export function login(account, password) {
     })
     $.ajax({
       type: 'POST',
-      // url: "http://43.143.195.225:8080/web/login",
-      url: 'https://bbsdev.liruinian.top/api/user/login',
+      url: 'http://43.143.195.225:8080/api/login',
+      // url: 'https://bbsdev.liruinian.top/api/user/login',
       data: jsondata,
       dataType: 'json',
+      contentType: 'application/json',
       success: function (result) {
-        if (result.code !== 2000) {
-          toast('登录失败', result.msg, 'error')
+        if (result.status !== 2000) {
+          toast('登录失败', result.message, 'error')
         } else {
           toast('权限已核实', '正在为您登录...', 'success')
         }
