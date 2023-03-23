@@ -9,11 +9,11 @@ import 'element-plus/theme-chalk/dark/css-vars.css'
 import './styles/dark/css-vars.css'
 import 'element-plus/dist/index.css'
 import router from './router'
-import './store'
+import pinia from './store/createstore'
 
 const app = createApp(App)
 app.config.globalProperties.$comp = 'home'
 app.use(router)
-app.use(createPinia())
+app.use(pinia)
 app.use(ElementPlus)
 app.mount('#app')

@@ -2,6 +2,7 @@ package service
 
 import (
 	"backend/tools"
+	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/gookit/color"
 	"gorm.io/datatypes"
@@ -123,4 +124,23 @@ func Logout(c *gin.Context) {
 	c.SetCookie("token", "", 0, "/", Conf.Domain, true, false)
 	log.Printf(color.FgGreen.Render(usrName + " 用户成功登出！"))
 	c.JSON(200, gin.H{"code": 2020, "msg": "success"})
+}
+
+func GetUserInfo(c *gin.Context) {
+	usrName, err := c.Cookie("username")
+	if err != nil {
+		c.JSON(200, gin.H{"code": 2031, "msg": "获取失败：请检查登录状态"})
+		return
+	}
+	res, err := tools.Safe_GetFromUsername(DB, usrName)
+	if err != nil || len(res) == 0 || len(res) > 1 {
+		tools.FastJSONResp(c, 2031, "获取失败：请检查登录状态", nil)
+		return
+	}
+	jsonRes, err := json.Marshal(res[0])
+	if err != nil {
+		tools.FastJSONResp(c, 2032, "获取失败：转换为json错误", nil)
+		return
+	}
+	tools.FastJSONResp(c, 2030, "ok", string(jsonRes))
 }

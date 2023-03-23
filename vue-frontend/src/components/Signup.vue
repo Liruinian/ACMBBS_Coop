@@ -8,7 +8,7 @@ const pass = ref('')
 const passc = ref('')
 const sex = ref('unknown')
 const description = ref('这个人很神秘，没有留下个人简介...')
-
+const birthdate = ref('2000-01-01')
 var valid = false
 var passwordc = false
 
@@ -120,6 +120,11 @@ export default defineComponent({
       <el-input type="text" v-model="username" @change="check" placeholder="昵称（必填，3-20字）" />
       <el-input type="text" v-model="studentid" @change="check" placeholder="学号" />
       <el-input type="text" v-model="realname" @change="check" placeholder="真实姓名" />
+      <el-date-picker
+        v-model="birthdate"
+        type="date"
+        placeholder="生日"
+      />
       <div style="display: flex">
         <p>性别：</p>
         <el-radio-group v-model="sex">
@@ -145,7 +150,7 @@ export default defineComponent({
       <div
         class="signup_btn"
         id="signup"
-        @click="signup(phone, email, username, studentid, realname, pass, sex, description, valid)"
+        @click="signup(phone, email, username, studentid, realname, pass, sex, birthdate,description, valid)"
       >
         注册
       </div>

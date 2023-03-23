@@ -1,0 +1,9 @@
+{
+    "status": 2000,
+    "message": "ok",
+    "data": {
+        "username":"NAME",
+        "somethingInteresting": "FUN",
+        "studentId": "A19220064"
+    }
+}
