@@ -2,11 +2,26 @@
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Account from '../components/Account.vue'
+import { useACMBBSStore } from '@/store'
+import $ from 'jquery'
+const store = useACMBBSStore()
 
-const accjson = "{\"uID\":1,\"userName\":\"tim\",\"userStudentId\":\"A19220064\",\"userSex\":\"unknown\",\"userEmail\":\"2941330150@qq.com\",\"userBirthday\":\"2004-02-25T00:00:00+08:00\",\"userClass\":0,\"userStatement\":\"这个人很神秘，没有留下个人简介...\",\"userRegDate\":\"2023-03-23T00:00:00+08:00\",\"userPoint\":0}"
+$.ajax({
+      type: 'POST',
+      url: 'http://43.143.195.225:8080/api/getUserinfo',
+      header:{
+        'session': store.session
+      },
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function (result) {
+        console.log(result)
+        const accarr = JSON.parse(accjson)
+        console.log(accarr)
+      }
+    })
 
-const accarr = JSON.parse(accjson)
-console.log(accarr)
+
 </script>
 
 <template>
@@ -16,19 +31,19 @@ console.log(accarr)
     </header>
     <main>
       <Account
-        :uid = accarr.uID
+        :uid = accarr.id
         :phone=accarr.phone
-        :email=accarr.userEmail
-        :username=accarr.userName
-        :studentid=accarr.userStudentId
+        :email=accarr.email
+        :username=accarr.username
+        :studentid=accarr.studentid
         :realname=accarr.realname
-        :sex=accarr.userSex
-        :description=accarr.userStatement
-        :regdate=accarr.userRegDate
-        :point=accarr.userPoint
-        :birthdate=accarr.userBirthday
+        :sex=accarr.sex
+        :description=accarr.introduction
         />
     </main>
+    <!-- :regdate=accarr.userRegDate -->
+    <!-- :point=accarr.userPoint
+        :birthdate=accarr.userBirthday -->
     <footer>
       <Footer />
     </footer>

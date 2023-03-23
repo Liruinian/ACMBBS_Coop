@@ -32,7 +32,7 @@ export function signup(
       StudentId: studentid,
       realname: realname,
       sex: sex,
-      statement: statement,
+      introduction: statement,
       birthday: birthdate,
       password: md5(pass)
     }

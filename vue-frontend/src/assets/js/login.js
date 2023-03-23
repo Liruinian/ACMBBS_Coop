@@ -35,33 +35,32 @@ export function login(account, password) {
     }
 
     let jsondata = JSON.stringify({
-      user: account,
+      username: account,
       password: md5(password),
       logintype: login_type
     })
     console.log(jsondata)
     $.ajax({
       type: 'POST',
-      // url: "http://43.143.195.225:8080/web/login",
+      url: 'http://43.143.195.225:8080/api/login',
       // url: 'https://bbsdev.liruinian.top/api/user/login',
-      url: 'http://localhost:8109/login',
+      // url: 'http://localhost:8109/login',
       data: jsondata,
       dataType: 'json',
       contentType: 'application/json',
       success: function (result) {
         console.log(result)
         if (result.status !== 2000) {
-          toast('登录失败', result.msg, 'error')
+          toast('登录失败', result.message, 'error')
           store.logged = false
           store.username = '未登录用户'
         } else {
           toast('权限已核实', '正在为您登录...', 'success')
           store.logged = true
           store.username = result.data.username
+          store.session = result.data.session
         }
       }
     })
   }
 }
-
-function signupjump() {}

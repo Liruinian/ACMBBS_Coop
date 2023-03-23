@@ -134,6 +134,15 @@ export default defineComponent({
         </el-radio-group>
       </div>
       <br />
+      简介:
+      <el-input
+        type="textarea"
+        maxlength="100"
+        show-word-limit
+        class="description"
+        v-model="description"
+      />
+      <br />
       <el-input type="password" v-model="pass" placeholder="密码" @change="check" />
       <el-input type="password" v-model="passc" placeholder="确认密码" @change="check" />
       <span class="passwro" style="display: block"

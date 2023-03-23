@@ -14,7 +14,7 @@ export default {
     <div class="sections">
       
       <Section v-for="post in postarr"
-        :section_title=post.section
+        :section_title=post.Section
         :section_logo=post.icon
         :section_id=post.id
         :section_href="'/section/' + post.id"

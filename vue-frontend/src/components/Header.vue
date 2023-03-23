@@ -2,9 +2,21 @@
 import { useDark } from '@vueuse/core'
 import { ref } from 'vue'
 import { useACMBBSStore } from '@/store'
-
+import $ from 'jquery'
 const store = useACMBBSStore()
-const sectionarr = JSON.parse(store.posts)
+$.ajax({
+  type: 'POST',
+  url: 'http://43.143.195.225:8080/api/getHomePagePlate',
+  async:false,
+  success: function (result) {
+    console.log(result)
+    var jsonParsed = JSON.parse(result)
+    store.posts =  jsonParsed.data
+  
+  }
+})
+
+const sectionarr = store.posts
 const activeIndex = ref('0')
 const isDark = useDark()
 </script>
@@ -25,7 +37,7 @@ const isDark = useDark()
       <template #title>所有板块</template>
       <template v-for="section in sectionarr">
       <router-link :to="'/section/'+section.id">
-      <el-menu-item :index="'2-'+section.id">{{ section.section }}</el-menu-item>
+      <el-menu-item :index="'2-'+section.id">{{ section.Section }}</el-menu-item>
       </router-link>
     </template>
     </el-sub-menu>
