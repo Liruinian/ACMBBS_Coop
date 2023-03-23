@@ -11,7 +11,18 @@ function toast(title, message, type) {
   })
 }
 
-export function signup(phone, email, username, studentid, realname, pass, sex, description, valid) {
+export function signup(
+  phone,
+  email,
+  username,
+  studentid,
+  realname,
+  pass,
+  sex,
+  birthdate,
+  statement,
+  valid
+) {
   console.log(valid)
   if (valid) {
     var regform = {
@@ -21,7 +32,8 @@ export function signup(phone, email, username, studentid, realname, pass, sex, d
       StudentId: studentid,
       realname: realname,
       sex: sex,
-      description: description,
+      statement: statement,
+      birthday: birthdate,
       password: md5(pass)
     }
     $.ajax({

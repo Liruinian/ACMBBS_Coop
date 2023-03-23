@@ -2,13 +2,16 @@
 import { defineComponent, ref } from 'vue'
 export default defineComponent({
   props: {
+    uid:Number,
     phone: String,
     email: String,
     username: String,
     studentid: String,
     realname: String,
     sex: String,
-    description: String
+    description: String,
+    regdate: String,
+    birthdate: String
   }
 })
 </script>
@@ -19,11 +22,14 @@ export default defineComponent({
       <p class="bgtext">NEAU<br />ACM</p>
     </div>
     <div class="form">
+      {{ uid }}
       <div>手机：{{ phone }}</div>
       <div>邮箱：{{ email }}</div>
       <div>昵称：{{ username }}</div>
       <div>学号：{{ studentid }}</div>
       <div>姓名：{{ realname }}</div>
+      {{ regdate }}
+      {{ birthdate }}
       性别：
       <div>
         <el-radio-group v-model="sex" disabled>

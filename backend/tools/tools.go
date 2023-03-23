@@ -1,22 +1,23 @@
 package tools
 
 import (
-	"backend/conf"
+	"github.com/gin-gonic/gin"
 	"github.com/gookit/color"
 	"golang.org/x/crypto/bcrypt"
-	"gorm.io/gorm"
 	"log"
 	"time"
 )
 
 var (
-	DB   *gorm.DB
-	Conf conf.Config
+	RenderGreen  func(a ...interface{}) string
+	RenderRed    func(a ...interface{}) string
+	RenderYellow func(a ...interface{}) string
 )
 
 func init() {
-	DB = GetDB()
-	Conf = conf.Conf
+	RenderGreen = color.FgGreen.Render
+	RenderRed = color.FgRed.Render
+	RenderYellow = color.FgYellow.Render
 }
 
 func GetPwd(pwd string) ([]byte, error) {
@@ -34,14 +35,14 @@ func ComparePwd(pwd1 string, pwd2 string) bool {
 	}
 }
 
-func VerifyUserIfAdmin(username string, lToken string, aToken string) bool {
-	if VerifyUser(username, lToken) && VerifyToken(aToken, "admin_token", username+" is admin") {
+func VerifyAdmin(username string, aToken string) bool {
+	if VerifyToken(aToken, "token", username+" is admin"+time.Now().Format("2006-01-02")) {
 		return true
 	}
 	return false
 }
 func VerifyUser(username string, lToken string) bool {
-	if VerifyToken(lToken, "user_token", username+time.Now().Format("2006-01-02")) {
+	if VerifyToken(lToken, "token", username+time.Now().Format("2006-01-02")) {
 		return true
 	}
 	return false
@@ -65,7 +66,6 @@ func VerifyToken(token string, tokenName string, tokenCtx string) bool {
 	}
 	if name != tokenName {
 		log.Println(color.FgRed.Render("Verify Token Failed! name Not Valid!"))
-		log.Println(color.FgRed.Render(err.Error()))
 	} else {
 		if ctx == tokenCtx {
 			return true
@@ -73,4 +73,17 @@ func VerifyToken(token string, tokenName string, tokenCtx string) bool {
 	}
 
 	return false
+}
+func FastJSONResp(c *gin.Context, status int, msg string, data any) {
+	if data != nil {
+		c.JSON(200, gin.H{"status": status, "msg": msg, "data": data})
+	} else {
+		c.JSON(200, gin.H{"status": status, "msg": msg})
+	}
+}
+
+func CreateUserToken(UserName string) gin.H {
+	token := CreateToken("token", UserName+time.Now().Format("2006-01-02"))
+	lJSON := gin.H{"username": UserName, "token": token}
+	return lJSON
 }

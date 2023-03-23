@@ -1,6 +1,9 @@
 import $ from 'jquery'
 import md5 from 'blueimp-md5'
 import { ElNotification } from 'element-plus'
+import { useACMBBSStore } from '@/store'
+import pinia from '@/store/createstore'
+const store = useACMBBSStore(pinia)
 
 function toast(title, message, type) {
   ElNotification({
@@ -10,15 +13,6 @@ function toast(title, message, type) {
     position: 'bottom-right'
   })
 }
-
-$.ajax({
-  type: 'GET',
-  url: 'https://bbsdev.liruinian.top/api/',
-  dataType: 'json',
-  success: function (result) {
-    console.log(result)
-  }
-})
 
 export function login(account, password) {
   let p_test = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
@@ -45,18 +39,25 @@ export function login(account, password) {
       password: md5(password),
       logintype: login_type
     })
+    console.log(jsondata)
     $.ajax({
       type: 'POST',
-      url: 'http://43.143.195.225:8080/api/login',
+      // url: "http://43.143.195.225:8080/web/login",
       // url: 'https://bbsdev.liruinian.top/api/user/login',
+      url: 'http://localhost:8109/login',
       data: jsondata,
       dataType: 'json',
       contentType: 'application/json',
       success: function (result) {
+        console.log(result)
         if (result.status !== 2000) {
-          toast('登录失败', result.message, 'error')
+          toast('登录失败', result.msg, 'error')
+          store.logged = false
+          store.username = '未登录用户'
         } else {
           toast('权限已核实', '正在为您登录...', 'success')
+          store.logged = true
+          store.username = result.data.username
         }
       }
     })
