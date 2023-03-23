@@ -21,6 +21,7 @@ type User struct {
 	UserPhone     string         `gorm:"column:userPhone" json:"phone"`
 	UserStudentID string         `gorm:"column:userStudentID" json:"studentId"`
 	UserSex       string         `gorm:"column:userSex" json:"sex"`
+	UserRealName  string         `gorm:"column:userRealName" json:"realname"`
 	UserEmail     string         `gorm:"column:userEmail" json:"email"`
 	UserBirthday  datatypes.Date `gorm:"column:userBirthday" json:"birthday"`
 	UserStatement string         `gorm:"column:userStatement" json:"statement"`

@@ -14,15 +14,6 @@ function toast(title, message, type) {
   })
 }
 
-$.ajax({
-  type: 'GET',
-  url: 'https://bbsdev.liruinian.top/api/',
-  dataType: 'json',
-  success: function (result) {
-    console.log(result)
-  }
-})
-
 export function login(account, password) {
   let p_test = /^1(3\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\d|9[0-35-9])\d{8}$/
   let em_test = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
