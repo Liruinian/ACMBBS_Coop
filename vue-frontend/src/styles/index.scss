@@ -5,8 +5,9 @@
   --form-bg-color: rgb(86, 140, 206);
 }
 
-html,body {
-    scroll-behavior:smooth;
+html,
+body {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -35,4 +36,3 @@ code {
   background-color: var(--ep-color-primary-light-9);
   color: var(--ep-color-primary);
 }
-

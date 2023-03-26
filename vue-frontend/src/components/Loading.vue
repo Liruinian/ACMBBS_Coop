@@ -1,26 +1,22 @@
 <template>
-
-<div id="loading-box">
-      <div class="loading-left-bg"></div>
-      <div class="loading-right-bg"></div>
-      <div class="spinner-box">
-        <div class="loader">
-          <div class="inner one"></div>
-          <div class="inner two"></div>
-          <div class="inner three"></div>
-        </div>
-        <div class="loading-word">
-          <p class="loading-title" id="loading-title">Validation Process in Progress</p>
-          <span id="loading-text">权限验证中~</span>
-        </div>
+  <div id="loading-box">
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+      </div>
+      <div class="loading-word">
+        <p class="loading-title" id="loading-title">Validation Process in Progress</p>
+        <span id="loading-text">权限验证中~</span>
       </div>
     </div>
-
+  </div>
 </template>
 
 <style scoped>
-
-
 #loading-box .loading-left-bg,
 #loading-box .loading-right-bg {
   position: fixed;
@@ -146,5 +142,4 @@ div.loaded div.spinner-box {
     transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
-
 </style>
