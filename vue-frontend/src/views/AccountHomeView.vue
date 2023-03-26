@@ -3,25 +3,35 @@ import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Account from '../components/Account.vue'
 import { useACMBBSStore } from '@/store'
+import { toast } from '@/js/toast'
 import $ from 'jquery'
+
 const store = useACMBBSStore()
+const data = {
+  UserId: store.userid
+}
+var accarr = ""
+
+console.log(JSON.stringify(data))
+console.log(store.userid)
 
 $.ajax({
-      type: 'POST',
-      url: 'http://43.143.195.225:8080/api/getUserinfo',
-      header:{
-        'session': store.session
-      },
-      dataType: 'json',
-      contentType: 'application/json',
-      success: function (result) {
-        console.log(result)
-        const accarr = JSON.parse(accjson)
-        console.log(accarr)
-      }
-    })
-
-
+  type: 'POST',
+  async: false,
+  url: 'https://bbs.liruinian.top/api/getUserInfo',
+  dataType: 'json',
+  data: JSON.stringify(data),
+  contentType: 'application/json',
+  success: function (result) {
+    console.log(result)
+    if(result.status != 2000){
+      toast('获取用户信息失败', result.message, 'error')
+    } else {
+      accarr = result.data
+      console.log(accarr)
+    }
+  }
+})
 </script>
 
 <template>
@@ -31,15 +41,13 @@ $.ajax({
     </header>
     <main>
       <Account
-        :uid = accarr.id
-        :phone=accarr.phone
-        :email=accarr.email
-        :username=accarr.username
-        :studentid=accarr.studentid
-        :realname=accarr.realname
-        :sex=accarr.sex
-        :description=accarr.introduction
-        />
+        :uid="accarr.id"
+        :username="accarr.username"
+        :studentid="accarr.StudentId"
+        :realname="accarr.realname"
+        :sex="accarr.sex"
+        :description="accarr.introduction"
+      />
     </main>
     <!-- :regdate=accarr.userRegDate -->
     <!-- :point=accarr.userPoint

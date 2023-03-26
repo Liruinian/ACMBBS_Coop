@@ -6,7 +6,7 @@ import $ from 'jquery'
 const store = useACMBBSStore()
 $.ajax({
   type: 'POST',
-  url: 'http://43.143.195.225:8080/api/getHomePagePlate',
+  url: 'https://bbs.liruinian.top/api/getHomeSections',
   async:false,
   success: function (result) {
     console.log(result)
@@ -61,12 +61,16 @@ const isDark = useDark()
         <router-link to="/account"><el-menu-item index="3-1">个人主页</el-menu-item></router-link>
       <el-menu-item index="3-2">登出</el-menu-item>
       </el-sub-menu>
+      <router-link to="/">
       <el-menu-item index="3" v-if="!store.logged">
+        
         <el-avatar
           :size="30"
           :src="'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
         />&nbsp {{ store.username }}
+      
     </el-menu-item>
+  </router-link>
   </el-menu>
 </template>
 

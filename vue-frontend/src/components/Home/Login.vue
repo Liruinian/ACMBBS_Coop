@@ -1,5 +1,5 @@
 <script setup>
-import { login } from '@/assets/js/login'
+import { login } from '@/js/login'
 import { ref } from 'vue'
 const account = ref('')
 const password = ref('')

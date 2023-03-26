@@ -2,9 +2,9 @@
 import { defineComponent, ref } from 'vue'
 export default defineComponent({
   props: {
-    uid:Number,
-    phone: String,
-    email: String,
+    uid: Number,
+    // phone: String,
+    // email: String,
     username: String,
     studentid: String,
     realname: String,
@@ -22,9 +22,9 @@ export default defineComponent({
       <p class="bgtext">NEAU<br />ACM</p>
     </div>
     <div class="form">
-      {{ uid }}
-      <div>手机：{{ phone }}</div>
-      <div>邮箱：{{ email }}</div>
+      UID: {{ uid }}
+      <!-- <div>手机：{{ phone }}</div>
+      <div>邮箱：{{ email }}</div> -->
       <div>昵称：{{ username }}</div>
       <div>学号：{{ studentid }}</div>
       <div>姓名：{{ realname }}</div>
@@ -53,7 +53,7 @@ export default defineComponent({
 </template>
 
 <style scoped>
-p{
+p {
   color: var(--el-text-color-regular);
 }
 .description {

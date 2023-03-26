@@ -6,10 +6,9 @@ import { useACMBBSStore } from '@/store'
 
 const store = useACMBBSStore()
 const postarr = store.posts
-
 </script>
 <template>
-  <Banner :logged="store.logged" :username="store.username"/>
+  <Banner :logged="store.logged" :username="store.username" />
   <HotTopic />
-  <AllSection :postarr="postarr"/>
+  <AllSection :postarr="postarr" />
 </template>
