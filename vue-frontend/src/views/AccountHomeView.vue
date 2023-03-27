@@ -10,7 +10,7 @@ const store = useACMBBSStore()
 const data = {
   UserId: store.userid
 }
-var accarr = ""
+var accarr = ''
 
 console.log(JSON.stringify(data))
 console.log(store.userid)
@@ -24,7 +24,7 @@ $.ajax({
   contentType: 'application/json',
   success: function (result) {
     console.log(result)
-    if(result.status != 2000){
+    if (result.status != 2000) {
       toast('获取用户信息失败', result.message, 'error')
     } else {
       accarr = result.data

@@ -2,6 +2,15 @@
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 import Post from '../components/Post/Page.vue'
+import { watch } from 'vue'
+
+const props = defineProps(['id'])
+var key = 0
+
+watch(props, async (newId, oldId) => {
+      key++
+})
+
 </script>
 
 <template>
@@ -10,7 +19,7 @@ import Post from '../components/Post/Page.vue'
       <Header />
     </header>
     <main>
-      <Post />
+      <Post :id="props.id" :key="key" />
     </main>
     <footer>
       <Footer />

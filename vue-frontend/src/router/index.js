@@ -15,8 +15,8 @@ const router = createRouter({
     },
     { path: '/signup', component: Signup, meta: { transition: 'slide-right' } },
     { path: '/account', component: Account, meta: { transition: 'slide-right' } },
-    { path: '/section/:name', component: Section, meta: { transition: 'slide-right' } },
-    { path: '/post/:id', component: Post, meta: { transition: 'slide-right' } }
+    { path: '/section/:id', component: Section, meta: { transition: 'slide-right' }, props: true },
+    { path: '/post/:id', component: Post, meta: { transition: 'slide-right' }, props: true }
   ]
 })
 
