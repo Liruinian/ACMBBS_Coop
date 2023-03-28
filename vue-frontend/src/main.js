@@ -10,7 +10,6 @@ import 'element-plus/dist/index.css'
 import router from './router'
 import pinia from './store/createstore'
 import axios from './js/axios'
-import marked from 'marked'
 
 axios.defaults.baseURL = 'https://bbs.liruinian.top/api/'
 const app = createApp(App)
