@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Error 502</title>
+    <style>
+      body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+      }
+      .footer {
+        color: grey;
+      }
+      .colorful {
+        background-image: -webkit-linear-gradient(left, #961414, #e1c928 25%, #169614 50%, #cf58df 75%, #961414);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 200% 100%;
+        -webkit-animation: maskedAnimation 4s infinite linear;
+      }
+
+      @keyframes maskedAnimation {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: -100% 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>网站暂时出现错误：请稍后重试</h1>
+    <h2 class="colorful">后端！你程序崩了！快去修啊！</h2>
+    <p>可能有用的信息：502 Bad Gateway</p>
+
+    <hr />
+    <p class="footer">东北农业大学 ACM集训队项目部 李睿年 韩玉坤</p>
+    <p class="footer">2023.3.15</p>
+  </body>
+</html>

@@ -2,6 +2,7 @@
 import $ from 'jquery'
 import PostDetail from './PostDetail.vue'
 import router from '@/router'
+import {toast} from '@/js/toast'
 
 const props = defineProps(['id'])
 var post = ''
@@ -12,13 +13,17 @@ var jsondata = JSON.stringify(data)
 console.log(jsondata)
 $.ajax({
   type: 'POST',
-  url: 'https://bbs.liruinian.top/api/postDetail',
+  url: 'https://bbs.liruinian.top/api/getPostDetail',
   async: false,
   data: jsondata,
   success: function (result) {
     console.log(result)
     var jsonParsed = JSON.parse(result)
-    post = jsonParsed.data
+    if(jsonParsed.data == null){
+      toast(jsonParsed.message,jsonParsed.err_message,"error")
+    }else{
+      post = jsonParsed.data
+    }
   }
 })
 

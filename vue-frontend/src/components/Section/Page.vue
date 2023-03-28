@@ -30,11 +30,15 @@ const update_pages = () => {
       posts = jsonParsed.data
     }
   })
+
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
 }
 
 update_pages(pageNumber)
 const handleCurrentChange = (val) => {
   pageNumber.value = val
+  
   update_pages(pageNumber)
 }
 const goBack = () => {
@@ -53,6 +57,7 @@ const goBack = () => {
   </div>
   <div class="PostListPageCont">
     <el-pagination
+    :hide-on-single-page="true"
       v-model:current-page="pageNumber"
       :page-size="20"
       layout="prev, pager, next, jumper"
@@ -72,6 +77,7 @@ const goBack = () => {
     </div>
 
     <el-pagination
+    :hide-on-single-page="true"
       v-model:current-page="pageNumber"
       :page-size="20"
       layout="prev, pager, next, jumper"

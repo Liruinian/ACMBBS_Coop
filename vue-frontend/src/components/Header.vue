@@ -3,8 +3,11 @@ import { useDark } from '@vueuse/core'
 import { ref } from 'vue'
 import { useACMBBSStore } from '@/store'
 import $ from 'jquery'
+import DeviceDetector from "device-detector-js";
+
 const store = useACMBBSStore()
-$.ajax({
+if(store.posts == ""){
+  $.ajax({
   type: 'POST',
   url: 'https://bbs.liruinian.top/api/getHomeSections',
   async: false,
@@ -14,6 +17,13 @@ $.ajax({
     store.posts = jsonParsed.data
   }
 })
+}
+
+
+    const deviceDetector = new DeviceDetector();
+    const userAgent = window.navigator.userAgent;
+    var device = deviceDetector.parse(userAgent);
+    store.deviceType = device.device.type
 
 const sectionarr = store.posts
 const activeIndex = ref('0')
@@ -21,7 +31,7 @@ const isDark = useDark()
 </script>
 <template>
   <el-menu :default-active="activeIndex" mode="horizontal" :ellipsis="false">
-    <router-link to="/"
+    <router-link to="/" v-if="device.device.type == 'desktop'"
       ><el-menu-item index="0"
         ><span class="title">NEAUACMTeam_BBS</span></el-menu-item
       ></router-link
@@ -37,7 +47,7 @@ const isDark = useDark()
       </template>
     </el-sub-menu>
     <div class="flex-grow" />
-    <el-menu-item index="dark">
+    <el-menu-item index="dark" v-if="device.device.type == 'desktop'">
       &nbsp
       <el-switch
         v-model="isDark"

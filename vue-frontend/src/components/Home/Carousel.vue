@@ -1,5 +1,9 @@
+<script setup>
+const props = defineProps(['devicetype'])
+const carouselWidth = props.devicetype == 'desktop' ? 'carousel_desktop' : 'carousel_else'
+</script>
 <template>
-  <el-carousel :interval="4000" type="card" height="200px">
+  <el-carousel :class="carouselWidth" :interval="4000" type="card" height="200px">
     <el-carousel-item v-for="item in 6" :key="item">
       <h3 text="2xl" justify="center">{{ item }}</h3>
     </el-carousel-item>
@@ -7,8 +11,11 @@
 </template>
 
 <style scoped>
-.el-carousel {
+.carousel_desktop{
   width: 600px;
+}
+.carousel_else{
+  width:100%;
 }
 .el-carousel__item h3 {
   color: #475669;

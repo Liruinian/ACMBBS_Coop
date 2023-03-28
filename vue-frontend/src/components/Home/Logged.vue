@@ -6,7 +6,7 @@ export default {
 }
 </script>
 <template>
-  <div class="login_form container">
+  <div class="container">
     <div class="login_text">欢迎您登录ACMTeam_BBS!</div>
     <div>登录用户名：{{ username }}</div>
   </div>
@@ -16,9 +16,6 @@ export default {
 .login_text,
 .login_btn {
   margin: 3px 0;
-}
-.login_form {
-  width: 200px;
 }
 .login_btn {
   background-color: rgb(12, 26, 145);

@@ -7,15 +7,16 @@ import Logged from './Logged.vue'
 export default {
   props: {
     logged: Boolean,
-    username: String
+    username: String,
+    devicetype: String
   }
 }
 </script>
 <template>
-  <div class="rec_container">
+  <div :class="devicetype == 'desktop' ? 'rec_container':''">
     <div class="recommendation container">
       <div class="boldtext"><i class="fa fa-thumbs-o-up"></i> 推荐内容</div>
-      <Carousel />
+      <Carousel :devicetype="devicetype"/>
     </div>
     <Login v-if="!logged" />
     <Logged v-if="logged" :username="username" />
