@@ -11,11 +11,20 @@ export default {
 </script>
 <template>
   <div class="post_cont">
-    <div class="post_id">{{ post_id }}</div>
-    <div class="post_title boldtext">{{ post_title }}</div>
-    <div class="post_content">{{ post_content }}</div>
-    <div class="post_author"><i class="fa fa-user-circle"></i> {{ post_author }}</div>
-    <div class="post_time"><i class="fa fa-clock-o"></i> {{ post_time }}</div>
+    <div class="post_header">
+      <span class="post_title boldtext">{{ post_title }}</span>
+      <span class="post_id">PID: {{ post_id }}</span>
+    </div>
+    <div class="post_content">
+      <p>{{ post_content }}</p>
+    </div>
+
+    <div class="post_footer">
+      <span class="post_author"><i class="fa fa-user-circle"></i> {{ post_author }}</span>
+
+      &nbsp;
+      <span class="post_time"><i class="fa fa-clock-o"></i> {{ post_time }}</span>
+    </div>
   </div>
 </template>
 
@@ -32,19 +41,31 @@ export default {
 .post_author,
 .post_time,
 .post_id {
+  flex: 1;
   font-size: 14px;
 }
 .post_author,
 .post_title,
 .post_id {
-  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.post_tag,
+.post_title {
+  flex: 6;
+}
 .post_time {
   color: gray;
+}
+.post_footer {
+  display: flex;
+}
+.post_id,
+.post_time {
+  text-align: right;
+}
+
+.post_header {
+  display: flex;
 }
 </style>

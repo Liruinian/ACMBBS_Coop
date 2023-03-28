@@ -1,7 +1,10 @@
 <script setup>
 import $ from 'jquery'
+import PostDetail from './PostDetail.vue'
+import router from '@/router'
+
 const props = defineProps(['id'])
-var post = ""
+var post = ''
 var data = {
   postId: parseInt(props.id)
 }
@@ -18,7 +21,20 @@ $.ajax({
     post = jsonParsed.data
   }
 })
+
+const goBack = () => {
+  router.go(-1)
+}
 </script>
 <template>
-  {{ post }}
+  <div class="header_title hidoverflow">
+    <el-page-header @back="goBack" title="返回">
+      <template #content>
+        <span class="text-large font-600 mr-3">
+          {{ post.title }}
+        </span>
+      </template>
+    </el-page-header>
+  </div>
+  <PostDetail :postslist="post" />
 </template>

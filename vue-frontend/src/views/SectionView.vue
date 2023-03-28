@@ -8,9 +8,8 @@ const props = defineProps(['id'])
 var key = 0
 
 watch(props, async (newId, oldId) => {
-      key++
+  key++
 })
-
 </script>
 
 <template>

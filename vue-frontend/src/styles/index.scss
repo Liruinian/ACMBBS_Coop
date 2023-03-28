@@ -25,11 +25,18 @@ a {
 }
 .container {
   margin: 5px;
-  border: 1px solid grey;
+  border: 1px solid rgb(67, 67, 67);
   border-radius: 5px;
   padding: 5px;
 }
-
+.header_title {
+  margin: 20px;
+}
+.hidoverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 code {
   border-radius: 2px;
   padding: 2px 4px;
