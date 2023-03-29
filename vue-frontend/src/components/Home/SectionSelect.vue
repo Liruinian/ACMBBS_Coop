@@ -19,7 +19,11 @@ const devicetype = props.devicetype
 <template>
   <router-link :to="section_href" :class="devicetype == 'desktop' ? '' : 'mobile'">
     <div
-      :class="devicetype == 'desktop' ? 'desktop section_cont container shadow' : 'section_cont container shadow'"
+      :class="
+        devicetype == 'desktop'
+          ? 'desktop section_cont container shadow'
+          : 'section_cont container shadow'
+      "
       id="section_cont"
     >
       <div class="section_title"><i v-bind:class="section_logo"></i><br />{{ section_title }}</div>

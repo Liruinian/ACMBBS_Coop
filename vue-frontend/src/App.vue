@@ -5,25 +5,21 @@ import Footer from '@/components/Footer.vue'
 
 <template>
   <el-container>
-    
     <el-header>
       <Header />
     </el-header>
     <el-container>
-        <el-main> <el-scrollbar height="100%">
+      <el-main>
+        <el-scrollbar height="100%">
           <router-view></router-view>
-        <Footer />
-        <el-backtop :right="20" :bottom="100" />
-      </el-scrollbar>
+          <Footer />
+        </el-scrollbar>
       </el-main>
-    
-      
-    </el-container>  </el-container>
-  
+    </el-container>
+  </el-container>
 </template>
 
 <style scoped>
-
 .el-header {
   position: relative;
   width: 100%;

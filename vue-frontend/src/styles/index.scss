@@ -29,7 +29,7 @@ a {
   border-radius: 5px;
   padding: 5px;
 }
-.shadow{
+.shadow {
   box-shadow: var(--el-box-shadow-light);
 }
 .header_title {
@@ -47,9 +47,9 @@ code {
   color: var(--ep-color-primary);
 }
 
-.v-note-panel{
-  border:none !important;
-  background-color: var( --el-bg-color) !important;
+.v-note-panel {
+  border: none !important;
+  background-color: var(--el-bg-color) !important;
 }
 
 textarea,
@@ -58,15 +58,16 @@ textarea,
 .content-input-wrapper,
 .popup-dropdown,
 .add-image-link,
-.v-show-content{
-  background-color: var( --el-bg-color) !important;
-  color:var(--el-text-color-primary) !important;
+.v-show-content {
+  background-color: var(--el-bg-color) !important;
+  color: var(--el-text-color-primary) !important;
 }
-.markdown-body table td, .markdown-body table th {
+.markdown-body table td,
+.markdown-body table th {
   background-color: var(--el-bg-color-overlay) !important;
-  color:var(--el-text-color-primary) !important;
+  color: var(--el-text-color-primary) !important;
 }
 
-.op-icon.selected{
-  background-color: var( --el-menu-active-color) !important;
-} 
+.op-icon.selected {
+  background-color: var(--el-menu-active-color) !important;
+}
