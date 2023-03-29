@@ -3,27 +3,26 @@ import { useDark } from '@vueuse/core'
 import { ref } from 'vue'
 import { useACMBBSStore } from '@/store'
 import $ from 'jquery'
-import DeviceDetector from "device-detector-js";
+import DeviceDetector from 'device-detector-js'
 
 const store = useACMBBSStore()
-if(store.posts == ""){
+if (store.posts == '') {
   $.ajax({
-  type: 'POST',
-  url: 'https://bbs.liruinian.top/api/getHomeSections',
-  async: false,
-  success: function (result) {
-    console.log(result)
-    var jsonParsed = JSON.parse(result)
-    store.posts = jsonParsed.data
-  }
-})
+    type: 'POST',
+    url: 'https://bbs.liruinian.top/api/getHomeSections',
+    async: false,
+    success: function (result) {
+      console.log(result)
+      var jsonParsed = JSON.parse(result)
+      store.posts = jsonParsed.data
+    }
+  })
 }
 
-
-    const deviceDetector = new DeviceDetector();
-    const userAgent = window.navigator.userAgent;
-    var device = deviceDetector.parse(userAgent);
-    store.deviceType = device.device.type
+const deviceDetector = new DeviceDetector()
+const userAgent = window.navigator.userAgent
+var device = deviceDetector.parse(userAgent)
+store.deviceType = device.device.type
 
 const sectionarr = store.posts
 const activeIndex = ref('0')

@@ -1,6 +1,4 @@
 <script setup>
-import Header from '../components/Header.vue'
-import Footer from '../components/Footer.vue'
 import Section from '../components/Section/Page.vue'
 import { watch } from 'vue'
 
@@ -13,15 +11,5 @@ watch(props, async (newId, oldId) => {
 </script>
 
 <template>
-  <div>
-    <header>
-      <Header />
-    </header>
-    <main>
-      <Section :id="props.id" :key="key" />
-    </main>
-    <footer>
-      <Footer />
-    </footer>
-  </div>
+  <Section :id="props.id" :key="key" />
 </template>

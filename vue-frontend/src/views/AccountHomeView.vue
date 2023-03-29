@@ -1,6 +1,4 @@
 <script setup>
-import Header from '../components/Header.vue'
-import Footer from '../components/Footer.vue'
 import Account from '../components/Account.vue'
 import { useACMBBSStore } from '@/store'
 import { toast } from '@/js/toast'
@@ -35,25 +33,17 @@ $.ajax({
 </script>
 
 <template>
-  <div>
-    <header>
-      <Header />
-    </header>
-    <main>
-      <Account
-        :uid="accarr.id"
-        :username="accarr.username"
-        :studentid="accarr.StudentId"
-        :realname="accarr.realname"
-        :sex="accarr.sex"
-        :description="accarr.introduction"
-      />
-    </main>
-    <!-- :regdate=accarr.userRegDate -->
-    <!-- :point=accarr.userPoint
+  <main>
+    <Account
+      :uid="accarr.id"
+      :username="accarr.username"
+      :studentid="accarr.StudentId"
+      :realname="accarr.realname"
+      :sex="accarr.sex"
+      :description="accarr.introduction"
+    />
+  </main>
+  <!-- :regdate=accarr.userRegDate -->
+  <!-- :point=accarr.userPoint
         :birthdate=accarr.userBirthday -->
-    <footer>
-      <Footer />
-    </footer>
-  </div>
 </template>

@@ -4,7 +4,8 @@ import Section from './SectionSelect.vue'
 <script>
 export default {
   props: {
-    postarr: Array
+    postarr: Array,
+    devicetype: String
   }
 }
 </script>
@@ -19,6 +20,7 @@ export default {
         :section_id="post.id"
         :section_href="'/section/' + post.id"
         :post="post"
+        :devicetype="devicetype"
       />
     </div>
   </div>

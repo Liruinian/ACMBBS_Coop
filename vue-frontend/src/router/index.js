@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/HomeView.vue'
-import Signup from '../views/SignupView.vue'
+import Home from '../components/Home/Page.vue'
+
+import Signup from '../components/Signup.vue'
 import Account from '../views/AccountHomeView.vue'
 import Section from '../views/SectionView.vue'
 import Post from '../views/PostView.vue'

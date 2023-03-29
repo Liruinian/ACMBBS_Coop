@@ -121,7 +121,7 @@ export default defineComponent({
       <el-input type="text" v-model="username" @change="check" placeholder="昵称（必填，3-20字）" />
       <el-input type="text" v-model="studentid" @change="check" placeholder="学号" />
       <el-input type="text" v-model="realname" @change="check" placeholder="真实姓名" />
-      <el-date-picker v-model="birthdate" type="date" placeholder="生日" />
+      生日： <el-date-picker v-model="birthdate" type="date" placeholder="生日" />
       <div style="display: flex">
         <p>性别：</p>
         <el-radio-group v-model="sex">
@@ -130,7 +130,6 @@ export default defineComponent({
           <el-radio-button label="unknown">保密</el-radio-button>
         </el-radio-group>
       </div>
-      <br />
       简介:
       <el-input
         type="textarea"
@@ -198,10 +197,10 @@ export default defineComponent({
   margin: auto;
   padding: 20px;
   margin-top: 45px;
-  background-color: var(--form-bg-color);
-  color: white;
-  box-shadow: 10px 10px 5px rgb(34, 74, 122, 0.5);
+  background: var(--form-bg-color);
+  box-shadow: 10px 10px 5px rgba(19, 40, 67, 0.51);
   overflow: hidden;
+  backdrop-filter: saturate(180%) blur(20px);
 }
 .backgrounddiv {
   width: 100%;
@@ -210,6 +209,7 @@ export default defineComponent({
 }
 .bgtextdiv {
   position: absolute;
+  text-shadow: rgb(14, 41, 70) 10px 10px;
   right: 0;
   text-align: right;
   margin-top: 0;

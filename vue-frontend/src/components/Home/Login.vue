@@ -3,7 +3,6 @@ import { login } from '@/js/login'
 import { ref } from 'vue'
 const account = ref('')
 const password = ref('')
-
 </script>
 <template>
   <div class="container">
@@ -20,7 +19,6 @@ const password = ref('')
 </template>
 
 <style scoped>
-
 .login_text,
 .login_btn {
   margin: 3px 0;

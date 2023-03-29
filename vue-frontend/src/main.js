@@ -10,6 +10,8 @@ import 'element-plus/dist/index.css'
 import router from './router'
 import pinia from './store/createstore'
 import axios from './js/axios'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
 
 axios.defaults.baseURL = 'https://bbs.liruinian.top/api/'
 const app = createApp(App)
@@ -17,5 +19,6 @@ app.config.globalProperties.$comp = 'home'
 app.use(router)
 app.use(pinia)
 app.use(ElementPlus)
+app.use(mavonEditor)
 app.mount('#app')
 app.config.globalProperties.$axios = axios

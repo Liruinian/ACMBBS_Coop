@@ -11,11 +11,11 @@ const carouselWidth = props.devicetype == 'desktop' ? 'carousel_desktop' : 'caro
 </template>
 
 <style scoped>
-.carousel_desktop{
+.carousel_desktop {
   width: 600px;
 }
-.carousel_else{
-  width:100%;
+.carousel_else {
+  width: 100%;
 }
 .el-carousel__item h3 {
   color: #475669;

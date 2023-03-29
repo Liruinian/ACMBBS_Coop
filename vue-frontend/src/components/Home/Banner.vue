@@ -13,10 +13,10 @@ export default {
 }
 </script>
 <template>
-  <div :class="devicetype == 'desktop' ? 'rec_container':''">
+  <div :class="devicetype == 'desktop' ? 'rec_container' : ''">
     <div class="recommendation container">
       <div class="boldtext"><i class="fa fa-thumbs-o-up"></i> 推荐内容</div>
-      <Carousel :devicetype="devicetype"/>
+      <Carousel :devicetype="devicetype" />
     </div>
     <Login v-if="!logged" />
     <Logged v-if="logged" :username="username" />

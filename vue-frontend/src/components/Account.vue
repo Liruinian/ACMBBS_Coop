@@ -59,19 +59,6 @@ p {
 .description {
   height: 150px;
 }
-.signup_btn {
-  padding-left: 10px;
-  width: 320px;
-  height: 30px;
-  margin: 20px 0;
-  background-color: rgb(12, 26, 145);
-  color: white;
-  padding-top: 6px;
-}
-.signup_btn:hover {
-  background-color: rgb(6, 14, 78);
-  cursor: pointer;
-}
 .form {
   position: absolute;
   left: 0;
@@ -79,9 +66,10 @@ p {
   margin: auto;
   padding: 20px;
   margin-top: 45px;
-  background-color: var(--form-bg-color);
+  background: var(--form-bg-color);
   box-shadow: 10px 10px 5px rgba(19, 40, 67, 0.51);
   overflow: hidden;
+  backdrop-filter: saturate(180%) blur(20px);
 }
 .backgrounddiv {
   width: 100%;
@@ -90,6 +78,7 @@ p {
 }
 .bgtextdiv {
   position: absolute;
+  text-shadow: rgb(14, 41, 70) 10px 10px;
   right: 0;
   text-align: right;
   margin-top: 0;

@@ -38,7 +38,7 @@ const update_pages = () => {
 update_pages(pageNumber)
 const handleCurrentChange = (val) => {
   pageNumber.value = val
-  
+
   update_pages(pageNumber)
 }
 const goBack = () => {
@@ -57,14 +57,14 @@ const goBack = () => {
   </div>
   <div class="PostListPageCont">
     <el-pagination
-    :hide-on-single-page="true"
+      :hide-on-single-page="true"
       v-model:current-page="pageNumber"
       :page-size="20"
       layout="prev, pager, next, jumper"
       v-model:total="posts.postCount"
       @current-change="handleCurrentChange"
     />
-    <div class="container PostListContainer" v-for="post in posts.posts">
+    <div class="container PostListContainer shadow" v-for="post in posts.posts">
       <router-link :to="'/post/' + post.id">
         <Post
           :post_title="post.title"
@@ -77,7 +77,7 @@ const goBack = () => {
     </div>
 
     <el-pagination
-    :hide-on-single-page="true"
+      :hide-on-single-page="true"
       v-model:current-page="pageNumber"
       :page-size="20"
       layout="prev, pager, next, jumper"
