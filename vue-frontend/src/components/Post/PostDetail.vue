@@ -61,7 +61,7 @@ const handleCommentChange = (val) => {
   <div class="comment container" v-for="comment in post.comments">
     <CommentDetail :comment="comment" :likeFunc="likeFunc"/>
     <Comment type="SubComment" :id="comment.id" />
-    <SubComment :comment="comment.subComments" :likeFunc="likeFunc"/>
+    <SubComment :comment="comment" :likeFunc="likeFunc"/>
   </div>
   <el-pagination
     :hide-on-single-page="true"

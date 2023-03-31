@@ -16,6 +16,7 @@ const likeFunc = props.likeFunc
         <div class="post_time">
           <p>{{ comment.time }}</p>
         </div>
+        {{ comment.id }}
       </div>
     </div>
     <div class="content">
