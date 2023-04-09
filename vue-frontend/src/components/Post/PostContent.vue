@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['post','likeFunc'])
+const props = defineProps(['post', 'likeFunc'])
 const post = props.post
 const likeFunc = props.likeFunc
 </script>

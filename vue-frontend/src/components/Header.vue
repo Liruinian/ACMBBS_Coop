@@ -7,6 +7,22 @@ import DeviceDetector from 'device-detector-js'
 
 const store = useACMBBSStore()
 if (store.posts == '') {
+  // fetch('https://bbs.liruinian.top/api/getHomeSections', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify(data)
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(result)
+  //     var jsonParsed = JSON.parse(result)
+  //     store.posts = jsonParsed.data
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error:', error)
+  //   })
   $.ajax({
     type: 'POST',
     url: 'https://bbs.liruinian.top/api/getHomeSections',

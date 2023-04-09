@@ -28,6 +28,4 @@ const id = props.id
   display: flex;
   margin: 20px;
 }
-
-
 </style>
