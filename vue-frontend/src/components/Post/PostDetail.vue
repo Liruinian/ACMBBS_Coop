@@ -4,6 +4,7 @@ import PostContent from './PostContent.vue'
 import Comment from './Comment.vue'
 import CommentDetail from './CommentDetail.vue'
 import SubComment from './SubComment.vue'
+import { toast } from '@/js/toast'
 
 const props = defineProps(['postslist'])
 var post = props.postslist
@@ -13,10 +14,35 @@ const customConfig = {
     'Content-Type': 'application/json'
   }
 }
-const likeFunc = (type, id) => {
-  let jsondata = JSON.stringify({})
-  console.log(jsondata)
-  API.post('likePost', jsondata, customConfig).then((response) => {
+const likeFunc = (type, id, isLiked) => {
+  var uri = ''
+  var jsondata = ''
+  if(type == 'post'){
+    uri = "likePost"
+    jsondata = JSON.stringify({
+      postId: id,
+      isLike: isLiked
+    })
+    console.log(jsondata)
+  }else if (type == 'comment'){
+    uri = "likeComment"
+    jsondata = JSON.stringify({
+      commentId: id,
+      isLike: isLiked
+    })
+    console.log(jsondata)
+  }else if (type == 'subcomment'){
+    uri = "likeSub"
+    jsondata = JSON.stringify({
+      subId: id,
+      isLike: isLiked
+    })
+    console.log(jsondata)
+  }else{
+    console.log("Like Func: Unknown type!")
+    return
+  }
+  API.post(uri, jsondata, customConfig).then((response) => {
     var result = response.data
     console.log(result)
     if (result.status !== 2000) {

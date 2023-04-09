@@ -22,18 +22,11 @@ const updatesubcomment = () => {
         <p><i class="fa fa-user-circle"></i> {{ subComment.username }} : {{ subComment.content }}</p>
         <p class="grey">
           {{ subComment.time }}
-          <el-button type="text" @click="likeFunc"
+          <el-button type="text" @click="likeFunc('subcomment',subComment.id,subComment.isLike)"
             ><i class="fa fa-thumbs-o-up"></i>&nbsp; {{ subComment.likeCount }}</el-button
           >
         </p>
       </div>
-      <el-pagination
-        :hide-on-single-page="true"
-        v-model:current-page="comment.subCommentPage"
-        :page-size="5"
-        layout="prev, pager, next, jumper"
-        v-model:total="comment.subCommentCount"
-        @current-change="handleSubCommentChange"
-      />
+      <!-- 分页 -->
   </template>
 

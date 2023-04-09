@@ -31,7 +31,7 @@ const likeFunc = props.likeFunc
           <!-- <div class="post_click">浏览量：{{ post.clickTimes }}</div> -->
         </div>
         <div>
-          <el-button class="likebtn" @click="likeFunc">点赞{{ comment.likeCount }}</el-button>
+          <el-button class="likebtn" @click="likeFunc('comment',comment.id,comment.isLike)">点赞{{ comment.likeCount }}</el-button>
         </div>
       </div>
     </div>
