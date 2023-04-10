@@ -65,11 +65,10 @@ const updatecomment = () => {
 const handleCommentChange = (val) => {
   updatecomment(val)
 }
-
 </script>
 
 <template>
-  <PostContent :post="post" :likeFunc="likeFunc"/>
+  <PostContent :post="post" :likeFunc="likeFunc" />
   <!-- <mavon-editor 
   v-model="value"
   :ishljs="true"
@@ -85,9 +84,9 @@ const handleCommentChange = (val) => {
   />
 
   <div class="comment container" v-for="comment in post.comments">
-    <CommentDetail :comment="comment" :likeFunc="likeFunc"/>
+    <CommentDetail :comment="comment" :likeFunc="likeFunc" />
     <Comment type="SubComment" :id="comment.id" />
-    <SubComment :comment="comment" :likeFunc="likeFunc"/>
+    <SubComment :comment="comment" :likeFunc="likeFunc" />
   </div>
   <el-pagination
     :hide-on-single-page="true"
@@ -100,7 +99,6 @@ const handleCommentChange = (val) => {
 </template>
 
 <style scoped>
-
 .comment {
   flex-direction: column;
 }

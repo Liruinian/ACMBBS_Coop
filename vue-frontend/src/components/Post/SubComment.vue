@@ -1,21 +1,21 @@
 <script setup>
-const props = defineProps(['comment','likeFunc'])
+const props = defineProps(['comment', 'likeFunc'])
 var comment = props.comment
 const likeFunc = props.likeFunc
 
 const updatesubcomment = () => {
-    var data = {
-      // ?
-    }
-    var jsondata = JSON.stringify(data)
-    console.log(jsondata)
-    // TODO: ajax
+  var data = {
+    // ?
   }
-  
-  const handleSubCommentChange = (val) => {
-    updatesubcomment(val)
-  }
-  </script>
+  var jsondata = JSON.stringify(data)
+  console.log(jsondata)
+  // TODO: ajax
+}
+
+const handleSubCommentChange = (val) => {
+  updatesubcomment(val)
+}
+</script>
 
   <template>
           <div class="subcomments container" v-for="subComment in comment.subComments">
@@ -29,4 +29,3 @@ const updatesubcomment = () => {
       </div>
       <!-- 分页 -->
   </template>
-

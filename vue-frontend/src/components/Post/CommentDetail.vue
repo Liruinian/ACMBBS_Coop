@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['comment','likeFunc'])
+const props = defineProps(['comment', 'likeFunc'])
 var comment = props.comment
 const likeFunc = props.likeFunc
 </script>
@@ -68,5 +68,4 @@ const likeFunc = props.likeFunc
 .pfooter_left {
   flex: 1;
 }
-
 </style>
