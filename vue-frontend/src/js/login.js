@@ -3,6 +3,7 @@ import { toast } from '@/js/toast'
 import { useACMBBSStore } from '@/store'
 import pinia from '@/store/createstore'
 import API from '@/js/axios'
+import cookies from 'vue-cookies'
 
 const store = useACMBBSStore(pinia)
 
@@ -50,6 +51,8 @@ export function login(account, password) {
         store.logged = true
         store.username = result.data.username
         store.userid = result.data.UserId
+        const serverReturnId = cookies.get('id')
+        console.log(serverReturnId)
       }
     })
   }

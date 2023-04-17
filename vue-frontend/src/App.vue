@@ -39,12 +39,22 @@ $.ajax({
   success: function (result) {
     console.log(result)
     store.posts = result
-    loading.value = false
-    console.log(loading)
+    const JSONParsed = JSON.parse(result)
+    
+    if(JSONParsed.data.length == 0){
+      loadingstatus.value = 'error'
+      loadingtext1.value = '在与后端服务器连接时出现错误: @func getHomeSections data值为空数组'
+      loadingtext2.value =
+      '如果您是网站管理员：请查看后端部分是否正常运行；\n如果您是用户，请与网站管理员联系或等待网站恢复正常再访问。\n'+
+      '获取到的内容:\n'+result
+      loading.value = true
+    }else{
+      loading.value = false
+    }
   },
   error: function (XMLHttpRequest, textStatus, errorThrown) {
     loadingstatus.value = 'error'
-    loadingtext1.value = '在与后端服务器连接时出现错误: @func getHomeSections'
+    loadingtext1.value = '在与后端服务器连接时出现错误: @func getHomeSections 加载出现错误'
     loadingtext2.value =
       '如果您是网站管理员：请查看后端部分是否正常运行；\n如果您是用户，请与网站管理员联系或等待网站恢复正常再访问。\n'
   }

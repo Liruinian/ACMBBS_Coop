@@ -17,7 +17,7 @@ export default {
         <div class="inner two"></div>
         <div class="inner three"></div>
       </div>
-      <div class="loading-word">
+      <div :class="status == 'loading' ? 'loading-word': 'loading-word error'">
         <p class="loading-title" id="loading-title">{{ text1 }}</p>
         <span id="loading-text">{{ text2 }}</span>
       </div>
@@ -26,6 +26,9 @@ export default {
 </template>
 
 <style scoped>
+.error{
+  text-align: left !important;
+}
 #loading-text {
   white-space: pre-line;
 }
