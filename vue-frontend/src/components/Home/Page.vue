@@ -5,7 +5,7 @@ import AllSection from './AllSection.vue'
 import { useACMBBSStore } from '@/store'
 
 const store = useACMBBSStore()
-const postarr = store.posts
+const postarr = JSON.parse(store.posts).data
 const devicetype = store.deviceType
 </script>
 <template>

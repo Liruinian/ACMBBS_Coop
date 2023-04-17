@@ -1,71 +1,65 @@
 <script setup>
+import Comment from './Comment.vue'
+import { ref } from 'vue'
+
 const props = defineProps(['comment', 'likeFunc'])
 var comment = props.comment
 const likeFunc = props.likeFunc
+
+const uplcomment = ref(true)
 </script>
 <template>
-  <div class="flex">
-    <div class="sidebar">
-      <el-image
-        style="width: 100px; height: 100px"
-        :src="'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'"
+  <div class="comments">
+    <div class="ccontainer">
+      <img
+        src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+        style="width: 50px"
       />
-
-      <div class="post_author">
-        <p><i class="fa fa-user-circle"></i> {{ comment.username }}</p>
-        <div class="post_time">
-          <p>{{ comment.time }}</p>
-        </div>
-        {{ comment.id }}
-      </div>
+      &nbsp;{{ comment.username }}
     </div>
     <div class="content">
-      <div class="post_content">
-        <p>{{ comment.content }}</p>
-      </div>
-      <div class="post_footer">
-        <div class="pfooter_left">
-          <!-- <div class="post_tag">
-            {{ post.tag }}
-          </div> -->
-          <!-- <div class="post_click">浏览量：{{ post.clickTimes }}</div> -->
-        </div>
-        <div>
-          <el-button class="likebtn" @click="likeFunc('comment',comment.id,comment.isLike)">点赞{{ comment.likeCount }}</el-button>
-        </div>
+      <el-text size="large">{{ comment.content }}</el-text>
+      <div class="information">
+        {{ comment.time }} &nbsp; &nbsp;
+        <el-button
+          v-if="!comment.isLike"
+          type="primary"
+          link
+          class="information grey"
+          @click="likeFunc('comment', comment.id, comment.isLike)"
+          ><i class="fa fa-thumbs-o-up"></i>&nbsp; {{ comment.likeCount }}</el-button
+        >
+        <el-button
+          v-else
+          type="primary"
+          link
+          class="information"
+          @click="likeFunc('comment', comment.id, comment.isLike)"
+          ><i class="fa fa-thumbs-o-up"></i>&nbsp; {{ comment.likeCount }}</el-button
+        >
+        &nbsp;
+        <el-button type="primary" link class="information" @click="uplcomment = !uplcomment"
+          >回复</el-button
+        >
       </div>
     </div>
   </div>
+  <div v-if="uplcomment"></div>
+  <Comment type="SubComment" :id="comment.id" v-else />
 </template>
-
 <style scoped>
-.flex {
-  display: flex;
+.information {
+  color: #9499a0;
 }
-
-.sidebar {
-  flex: 1;
-  border-right: 1px solid;
+.ccontainer {
+  display: flex;
+  align-items: center;
+}
+.comments {
+  padding-left: 5px;
+  margin: 10px 0;
 }
 .content {
-  flex: 5;
-}
-.sidebar,
-.content {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.post_tag {
-  color: gray;
-}
-.post_content {
-  flex: 1;
-}
-.post_footer {
-  display: flex;
-}
-.pfooter_left {
-  flex: 1;
+  padding-left: 55px;
 }
 </style>

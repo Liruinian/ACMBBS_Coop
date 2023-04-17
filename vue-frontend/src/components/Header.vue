@@ -2,47 +2,25 @@
 import { useDark } from '@vueuse/core'
 import { ref } from 'vue'
 import { useACMBBSStore } from '@/store'
-import $ from 'jquery'
+import { useLocalStorage } from '@vueuse/core'
 import DeviceDetector from 'device-detector-js'
 
 const store = useACMBBSStore()
-if (store.posts == '') {
-  // fetch('https://bbs.liruinian.top/api/getHomeSections', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify(data)
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log(result)
-  //     var jsonParsed = JSON.parse(result)
-  //     store.posts = jsonParsed.data
-  //   })
-  //   .catch((error) => {
-  //     console.error('Error:', error)
-  //   })
-  $.ajax({
-    type: 'POST',
-    url: 'https://bbs.liruinian.top/api/getHomeSections',
-    async: false,
-    success: function (result) {
-      console.log(result)
-      var jsonParsed = JSON.parse(result)
-      store.posts = jsonParsed.data
-    }
-  })
-}
 
 const deviceDetector = new DeviceDetector()
 const userAgent = window.navigator.userAgent
 var device = deviceDetector.parse(userAgent)
 store.deviceType = device.device.type
 
-const sectionarr = store.posts
+const sectionarr = ref(JSON.parse(store.posts).data)
+// const sectionarr = store.posts
 const activeIndex = ref('0')
 const isDark = useDark()
+
+const logout = function (){
+  localStorage.clear();
+  window.location.reload();
+}
 </script>
 <template>
   <el-menu :default-active="activeIndex" mode="horizontal" :ellipsis="false">
@@ -81,7 +59,7 @@ const isDark = useDark()
         />&nbsp {{ store.username }}</template
       >
       <router-link to="/account"><el-menu-item index="3-1">个人主页</el-menu-item></router-link>
-      <el-menu-item index="3-2">登出</el-menu-item>
+      <el-menu-item index="3-2" @click="logout">登出</el-menu-item>
     </el-sub-menu>
     <router-link to="/">
       <el-menu-item index="3" v-if="!store.logged">

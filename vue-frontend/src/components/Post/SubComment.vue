@@ -17,15 +17,64 @@ const handleSubCommentChange = (val) => {
 }
 </script>
 
-  <template>
-          <div class="subcomments container" v-for="subComment in comment.subComments">
-        <p><i class="fa fa-user-circle"></i> {{ subComment.username }} : {{ subComment.content }}</p>
-        <p class="grey">
-          {{ subComment.time }}
-          <el-button type="text" @click="likeFunc('subcomment',subComment.id,subComment.isLike)"
-            ><i class="fa fa-thumbs-o-up"></i>&nbsp; {{ subComment.likeCount }}</el-button
-          >
-        </p>
+<template>
+  <div class="subcontainer" v-for="subComment in comment.subComments">
+    <div class="subcomment">
+      <img
+        src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+        style="width: 30px"
+      />
+      &nbsp;
+      <span class="dark-grey">{{ subComment.username }}</span>
+    </div>
+
+    <div class="subinfo">
+      <el-text>{{ subComment.content }}</el-text>
+      <div class="information dark-grey">
+        {{ subComment.time }}
+        <el-button
+          v-if="!subComment.isLike"
+          type="primary"
+          link
+          class="information dark-grey"
+          @click="likeFunc('subcomment', subComment.id, subComment.isLike)"
+          ><i class="fa fa-thumbs-o-up"></i>&nbsp; {{ subComment.likeCount }}</el-button
+        >
+        <el-button
+          v-else
+          type="primary"
+          link
+          class="information"
+          @click="likeFunc('subcomment', subComment.id, subComment.isLike)"
+          ><i class="fa fa-thumbs-o-up"></i>&nbsp; {{ subComment.likeCount }}</el-button
+        >
       </div>
-      <!-- 分页 -->
-  </template>
+    </div>
+  </div>
+  <!-- 分页 -->
+</template>
+
+<style scoped>
+.information {
+  font-size: 14px;
+}
+.maincontent {
+  display: block;
+  height: 100px;
+}
+.dark-grey {
+  color: #9499a0;
+}
+.subcomment {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+.subcontainer {
+  margin-left: 20px;
+}
+.subinfo {
+  padding-left: 35px;
+  margin: 5px 0;
+}
+</style>

@@ -1,9 +1,12 @@
 import { defineStore } from 'pinia'
-export const useACMBBSStore = defineStore('ACMBBSStore', () => {
-  var posts = ''
-  var deviceType = ''
-  var userid = 0
-  const logged = false
-  const username = '未登录用户'
-  return { posts, logged, username, userid, deviceType }
+import { useLocalStorage } from '@vueuse/core'
+
+export const useACMBBSStore = defineStore('ACMBBSStore', {
+  state: () => ({
+    posts: useLocalStorage('posts', null),
+    deviceType: useLocalStorage('deviceType', null),
+    userid: useLocalStorage('userid', 0),
+    logged: useLocalStorage('logged', false),
+    username: useLocalStorage('username', '未登录用户')
+  })
 })
