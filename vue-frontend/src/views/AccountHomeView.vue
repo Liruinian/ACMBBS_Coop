@@ -16,7 +16,7 @@ console.log(store.userid)
 $.ajax({
   type: 'POST',
   async: false,
-  url: 'https://bbs.liruinian.top/api/getUserInfo',
+  url: 'https://bbs.liruinian.top/api/getMyInfo',
   dataType: 'json',
   data: JSON.stringify(data),
   contentType: 'application/json',
@@ -35,6 +35,10 @@ $.ajax({
 <template>
   <main>
     <Account
+    :phone="accarr.phone"
+    :point="accarr.point"
+    :email="accarr.email"
+    :level="accarr.level"
       :uid="accarr.id"
       :username="accarr.username"
       :studentid="accarr.StudentId"

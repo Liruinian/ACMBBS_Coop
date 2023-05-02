@@ -4,6 +4,7 @@ import PostContent from './PostContent.vue'
 import Comment from './Comment.vue'
 import CommentDetail from './CommentDetail.vue'
 import SubComment from './SubComment.vue'
+import { toast } from '@/js/toast'
 
 const props = defineProps(['postslist'])
 var post = props.postslist

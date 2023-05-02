@@ -62,6 +62,11 @@ const isDark = useDark()
       </template>
     </el-sub-menu>
     <div class="flex-grow" />
+    <router-link :to="'/search'">
+    <el-menu-item index="search" v-if="device.device.type == 'desktop'">
+      <i class="fa fa-search" ></i>
+    </el-menu-item>
+  </router-link>
     <el-menu-item index="dark" v-if="device.device.type == 'desktop'">
       &nbsp
       <el-switch
