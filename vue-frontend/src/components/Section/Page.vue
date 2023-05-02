@@ -50,7 +50,7 @@ const goBack = () => {
     <el-page-header @back="goBack" title="返回">
       <template #content>
         <span class="text-large font-600 mr-3">
-          {{ store.posts[id - 1].Section }} ({{ posts.postCount }})
+          {{ JSON.parse(store.posts).data[id - 1].Section }} ({{ posts.postCount }})
         </span>
       </template>
     </el-page-header>

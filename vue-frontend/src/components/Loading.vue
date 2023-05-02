@@ -1,22 +1,37 @@
+<script>
+export default {
+  props: {
+    text1: String,
+    text2: String,
+    status: String
+  }
+}
+</script>
 <template>
   <div id="loading-box">
     <div class="loading-left-bg"></div>
     <div class="loading-right-bg"></div>
     <div class="spinner-box">
-      <div class="loader">
+      <div class="loader" v-if="status == 'loading'">
         <div class="inner one"></div>
         <div class="inner two"></div>
         <div class="inner three"></div>
       </div>
-      <div class="loading-word">
-        <p class="loading-title" id="loading-title">Validation Process in Progress</p>
-        <span id="loading-text">权限验证中~</span>
+      <div :class="status == 'loading' ? 'loading-word': 'loading-word error'">
+        <p class="loading-title" id="loading-title">{{ text1 }}</p>
+        <span id="loading-text">{{ text2 }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.error{
+  text-align: left !important;
+}
+#loading-text {
+  white-space: pre-line;
+}
 #loading-box .loading-left-bg,
 #loading-box .loading-right-bg {
   position: fixed;

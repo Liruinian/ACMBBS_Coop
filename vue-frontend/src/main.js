@@ -1,36 +1,3 @@
-/*
- * **************************************************************************
- * ********************                                  ********************
- * ********************      COPYRIGHT INFORMATION       ********************
- * ********************                                  ********************
- * **************************************************************************
- *                                                                          *
- *                                   _oo8oo_                                *
- *                                  o8888888o                               *
- *                                  88" . "88                               *
- *                                  (| -_- |)                               *
- *                                  0\  =  /0                               *
- *                                ___/'==='\___                             *
- *                              .' \\|     |// '.                           *
- *                             / \\|||  :  |||// \                          *
- *                            / _||||| -:- |||||_ \                         *
- *                           |   | \\\  -  /// |   |                        *
- *                           | \_|  ''\---/''  |_/ |                        *
- *                           \  .-\__  '-'  __/-.  /                        *
- *                         ___'. .'  /--.--\  '. .'___                      *
- *                      ."" '<  '.___\_<|>_/___.'  >' "".                   *
- *                     | | :  `- \`.:`\ _ /`:.`/ -`  : | |                  *
- *                     \  \ `-.   \_ __\ /__ _/   .-` /  /                  *
- *                 =====`-.____`.___ \_____/ ___.`____.-`=====              *
- *                                   `=---=`                                *
- * **************************************************************************
- * ********************                                  ********************
- * ********************      				             ********************
- * ********************         佛祖保佑 永远无BUG        ********************
- * ********************                                  ********************
- * **************************************************************************
- */
-
 import { createApp } from 'vue'
 import App from './App.vue'
 import './styles/index.scss'
@@ -45,11 +12,18 @@ import pinia from './store/createstore'
 import axios from './js/axios'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import VueLazyComponent from '@xunlei/vue-lazy-component'
+import VueCookies from 'vue-cookies'
+
+// import './Mock'
 
 axios.defaults.baseURL = 'https://bbs.liruinian.top/api/'
 const app = createApp(App)
 app.config.globalProperties.$comp = 'home'
+app.use(VueLazyComponent)
 app.use(router)
+app.use(VueCookies)
+app.config.globalProperties.$cookies = VueCookies
 app.use(pinia)
 app.use(ElementPlus)
 app.use(mavonEditor)

@@ -17,6 +17,7 @@ export default {
     <div class="recommendation container">
       <div class="boldtext"><i class="fa fa-thumbs-o-up"></i> 推荐内容</div>
       <Carousel :devicetype="devicetype" />
+      <!-- <el-skeleton :rows="5" animated /> -->
     </div>
     <Login v-if="!logged" />
     <Logged v-if="logged" :username="username" />

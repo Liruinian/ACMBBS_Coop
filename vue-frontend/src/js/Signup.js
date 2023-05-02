@@ -1,5 +1,6 @@
 import md5 from 'blueimp-md5'
 import { toast } from '@/js/toast'
+import API from '@/js/axios'
 
 export function signup(
   phone,

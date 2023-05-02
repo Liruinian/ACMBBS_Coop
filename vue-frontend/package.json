@@ -19,11 +19,13 @@
     "element-plus": "^2.3.1",
     "jquery": "3.6.4",
     "mavon-editor": "^3.0.1",
+    "mockjs": "^1.1.0",
     "node-sass": "^8.0.0",
     "pinia": "^2.0.32",
     "scss": "^0.2.4",
     "vite-plugin-mkcert": "^1.14.0",
     "vue": "^3.2.47",
+    "vue-cookies": "^1.8.3",
     "vue-router": "4.1.6"
   },
   "devDependencies": {

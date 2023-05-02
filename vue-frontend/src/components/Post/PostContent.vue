@@ -1,4 +1,5 @@
 <script setup>
+import Comment from './Comment.vue'
 const props = defineProps(['post', 'likeFunc'])
 const post = props.post
 const likeFunc = props.likeFunc
@@ -20,7 +21,7 @@ const likeFunc = props.likeFunc
     </div>
     <div class="content">
       <div class="post_content">
-        <p>{{ post.content }}</p>
+        <el-text size="large">{{ post.content }}</el-text>
       </div>
       <div class="post_footer">
         <div class="pfooter_left">
@@ -30,11 +31,17 @@ const likeFunc = props.likeFunc
           <div class="post_click">浏览量：{{ post.clickTimes }}</div>
         </div>
         <div>
-          <el-button @click="likeFunc">点赞{{ post.likeCount }}</el-button>
+          <el-button @click="likeFunc('post', post.id, post.isLike)" v-if="post.isLike == false"
+            >点赞{{ post.likeCount }}</el-button
+          >
+          <el-button @click="likeFunc('post', post.id, post.isLike)" v-else type="primary"
+            >点赞{{ post.likeCount }}</el-button
+          >
         </div>
       </div>
     </div>
   </div>
+  <Comment type="Comment" :id="post.id" />
 </template>
 
 <style scoped>
@@ -59,7 +66,7 @@ const likeFunc = props.likeFunc
   color: gray;
 }
 .post_content {
-  flex: 1;
+  margin: 20px 0;
 }
 .post_footer {
   display: flex;
